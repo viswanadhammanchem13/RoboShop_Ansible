@@ -24,6 +24,8 @@
     ansible.builtin.file:
       path: /app
       state: directory
+      mode: '0001'
+
 
   - name: Download the application code
     ansible.builtin.get_url:
