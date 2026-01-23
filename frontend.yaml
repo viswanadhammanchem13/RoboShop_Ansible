@@ -20,7 +20,7 @@
       enabled: yes
   
   - name: remove html content
-    ansible.builtin.lineinfile:
+    ansible.builtin.file:
       path: /usr/share/nginx/html
       state: absent 
   
