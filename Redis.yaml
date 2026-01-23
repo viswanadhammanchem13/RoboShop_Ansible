@@ -1,0 +1,14 @@
+- name: Cofiguring Redis Data Base
+  hosts: redis 
+  become: yes 
+  tasks:
+  - name: Disabling Reddis Module 
+    ansible.builtin.command: dnf module disable redis -y
+
+  - name: Enabling Redis Module:V7
+    ansible.builtin.command: dnf module enable redis:7 -y
+
+  - name: Installing Redis
+    ansible.builtin.dnf:
+      name: redis
+      state: present
