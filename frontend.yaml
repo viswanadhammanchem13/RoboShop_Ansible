@@ -21,7 +21,7 @@
   
   - name: remove html content
     ansible.builtin.lineinfile:
-      path: /usr/share/nginx/html/
+      path: /usr/share/nginx/html
       state: absent 
   
   - name: Create html directory
