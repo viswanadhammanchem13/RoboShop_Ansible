@@ -43,8 +43,8 @@
 
   - name: Copying user service
     ansible.builtin.copy:
-    src: user.service
-    dest: /etc/systemd/system/user.service
+      src: user.service
+      dest: /etc/systemd/system/user.service
 
   - name: Systemd Reloading
     ansible.builtin.systemd_service:
