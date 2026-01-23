@@ -1,0 +1,28 @@
+- name: Configuring Catalogue Server
+  hosts: Catalogue
+  become: yes
+  tasks: 
+  - name: Disable current module
+    ansible.builtin.command: dnf module disable nodejs -y
+
+  - name: Enable required module
+    ansible.builtin.dnf:
+      name: nodejs
+      state: present
+    
+  - name: roboshop system user
+    ansible.builtin.user:
+      name: roboshop
+      home: /app
+      shell: /sbin/nologin
+      system: true
+
+  - name: setup an app directory
+    ansible.builtin.file:
+      path: /app
+      state: directory
+
+  - name: Download the application code
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
+      dest: /tmp/catalogue.zip
