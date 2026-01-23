@@ -1,5 +1,5 @@
 - name: Configuring Catalogue Server
-  hosts: Catalogue
+  hosts: catalogue
   become: yes
   tasks: 
   - name: Disable current module
