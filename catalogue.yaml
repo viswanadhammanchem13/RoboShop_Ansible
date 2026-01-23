@@ -47,6 +47,6 @@
 
   - name: Start and enable service
     ansible.builtin.service:
-      name: nodejs
+      name: catalogue
       state: started
       enabled: yes
