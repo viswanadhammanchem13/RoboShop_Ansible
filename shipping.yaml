@@ -53,3 +53,8 @@
       name: shipping 
       state: started
       enabled: yes
+
+  - name: Installing MySQL Client
+    ansible.builtin.dnf:
+      name: mysql
+      state: present
