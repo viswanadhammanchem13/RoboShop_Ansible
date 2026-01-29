@@ -14,6 +14,7 @@
     loop:
     - erlang
     - rabbitmq-server
+    
   - name: Starting and enabling service
     ansible.builtin.service:
       name: rabbitmq-server
