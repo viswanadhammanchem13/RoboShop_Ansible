@@ -1,11 +1,11 @@
-- name: Insstalling  and Configuring MySQL
+- name: Installing  and Configuring MySQL
   hosts: mysql
   become: yes
   tasks:
   - name: Installing MySQL
     ansible.builtin.dnf:
       name: mysql-server 
-      sate: installed
+      state: installed
     
   - name: start and enable service 
     ansible.builtin.service:
