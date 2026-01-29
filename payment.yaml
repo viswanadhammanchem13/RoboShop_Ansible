@@ -8,12 +8,13 @@
       state: present
     loop:
     - python3
+    - python3-pip
     -  gcc
     -  python3-devel
 
   - name: Creating System user
     ansible.builtin.user:
-      user: roboshop
+      name: roboshop
       home: /app
       shell: /sbin/nologin
       system: true
