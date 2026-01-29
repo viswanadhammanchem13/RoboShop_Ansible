@@ -9,9 +9,11 @@
 
   - name: Installing rabbitmq
     ansible.builtin.dnf:
-      name: rabbitmq-server
+      name: "{{ item }}"
       state:  installed
-
+    loop:
+    - erlang
+    - rabbitmq-server
   - name: Starting and enabling service
     ansible.builtin.service:
       name: rabbitmq-server
