@@ -4,8 +4,19 @@
   tasks:
   - name: Installing maven
     ansible.builtin.dnf:
-      name: maven
+      name: {{ item }}
       state: present
+    loop:
+    - maven
+    - mysql
+
+  - name: install PyMySQL and cryptography 
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
+    loop:
+    - cryptography
+    - PyMySQL
 
   - name: Creating System user
     ansible.builtin.user:
@@ -58,3 +69,25 @@
     ansible.builtin.dnf:
       name: mysql
       state: present
+
+  - name: import data
+    tags:
+    - import
+    community.mysql.mysql_db:
+      name: all
+      login_user: root
+      login_password: RoboShop@1
+      login_host: mysql.daws84s.site
+      state: import
+      target: "{{ item }}"
+    loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql
+    - /app/db/master-data.sql
+
+  - name: restart shipping
+    tags:
+    - import
+    ansible.builtin.service:
+      state: restarted
+      name: shipping
